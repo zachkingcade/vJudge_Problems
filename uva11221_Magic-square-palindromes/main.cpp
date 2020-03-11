@@ -24,7 +24,7 @@ int main(){
 
         //read in our string to process
         getline(std::cin, sentence);
-        //remove all non characters
+        //remove all non alphabet characters
         for (int i = 0; i < sentence.length(); i++){
             if (int(sentence[i]) > 96 && int(sentence[i]) < 123){
                 modSentence += sentence[i];
