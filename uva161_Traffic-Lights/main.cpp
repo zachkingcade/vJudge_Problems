@@ -6,31 +6,31 @@
  * ------------------------- Storing the Data-------------------------------
  * So my approach to this went something like this, we first nerd to be able
  * to store all the intervals in a quick and concise format, for this I used
- * Vectors in loop that reads in a set and the prepares to process it before
+ * Vectors in a loop that reads in a set and the prepares to process it before
  * grabbing the next data set. I next decided instead of trying a costly simulation
- * I would pick one light to test off of when it's green and one not to. I decided
- * to do the least amount of test I would do it on the one with the smallest interval
+ * I would pick one light to test off of but only when that light it green. I decided
+ * to do the least amount of testing I would do it on the one with the smallest interval time
  * since I only test for when it's green and a good amount of that will be taken by the
- * time it spends yellow of whcih I will not test for. One good reason for doing this is
+ * 5 seconds it spends yellow of which I will not test for. One good reason for doing this is
  * all the lights start as green and we only care about the next time they become green
  * after the first yellow light which is gonna be on the smallest interval.
  * 
  * ------------------------ Processing the Data ---------------------------
  * When processing the data we check each second of a given green light interval
  * using the green light intervals of the smallest interval in the set. We check
- * if the other lights are green by dividing the current time by the interval and
- * flooring it. Since we start with the lowest interval we know the division will
- * never break out of the intercal it is in be it green or red so we can floor it
- * and only worry about if it is in a red or green intercal current, since the lights
- * start out green we can us this logic, if the number is even it matchs the the starting
+ * if the other lights are green by dividing the current time by that lights interval and
+ * truncating it. Since we start with the lowest interval we know the division will
+ * never break out of the interval it is in be it green or red so we can truncate it
+ * and only worry about if it is in a red or green interval current, since the lights
+ * start out green we can the following logic, if the number is even it matches the the starting
  * value of green. If it is odd it is not and is thus red. Now that just checks if we're
  * in a red or green interval, lastly we mod the number by the interval and make sure
  * the remainder is not more then the interval minus 5 to check for yellow lights.
- * If both of these are true then the light is currenty green
+ * If both of these are true then the light is currently green.
  * 
  * ------------------------- Displaying output ---------------------------
  * Since we chose to store everything in seconds when printing our display we
- * must conver/format things in hours, minutes and seconds to match the desired
+ * must convert/format things in hours, minutes and seconds to match the desired
  * output of the original problem.
  */
 
