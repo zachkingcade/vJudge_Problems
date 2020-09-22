@@ -4,8 +4,8 @@
  * 
  * Notes:
  * I'll be using a vector to represent the graphs componets
- * where every componet is alos a vector of the nodes it contains
- * There are 5 main cases that need to be account for here:
+ * where every componet is also a vector of the nodes it contains
+ * There are 5 main cases that need to be accounted for here:
  * --------------------------------------------------------
  * 1- Node 1 not found,     Node 2 not found                 => start a new vector with both nodes on it
  * 2- Node 1 is  found,     Node 2 not found                 => add node 2 to the vector of node 1
@@ -53,7 +53,7 @@ int main(){
             firstNodeVector.push_back(temp);
             graph.push_back(firstNodeVector);
         }
-        //prime loop and process using 5 states from starting notes
+        //prime loop and process using 5 states from starting notes at the top of the page
         std::getline(std::cin, holder);
         while (holder != ""){
             node1 = holder[0];
@@ -84,7 +84,7 @@ int main(){
             //move onto process the next node
             std::getline(std::cin, holder);
         }
-        //at this point the end of this data set has been found and we just need to calculate the number of conponets
+        //at this point the end of this data set has been found and we just need to calculate the number of components
         std::cout << graph.size() << "\n";
         //format new lines correctly
         if (i + 1 < numSets){

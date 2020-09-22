@@ -4,11 +4,11 @@
  * 
  * Notes:
  * ------------------------- Storing the Data-------------------------------
- * So my approach to this went something like this, we first nerd to be able
+ * So my approach to this went something like this, we first need to be able
  * to store all the intervals in a quick and concise format, for this I used
- * Vectors in a loop that reads in a set and the prepares to process it before
+ * Vectors in a loop that reads in a set and then prepares to process it before
  * grabbing the next data set. I next decided instead of trying a costly simulation
- * I would pick one light to test off of but only when that light it green. I decided
+ * I would pick one light to test off of but only when that light is green. I decided
  * to do the least amount of testing I would do it on the one with the smallest interval time
  * since I only test for when it's green and a good amount of that will be taken by the
  * 5 seconds it spends yellow of which I will not test for. One good reason for doing this is
@@ -48,7 +48,7 @@ int main(){
 
     //loop to read our data into a vector but process it before reading
     //the next data set, end file marker is 3 zeros in a row, we are granteed
-    //that a interval value will never be less then 10 so we can us that to test
+    //that a interval value will never be less then 10 so we can use that to test
     //if a data set starts with a 0 it is actaully then end of file marker. so here
     //we cin during our while loop test to make sure we can because if we can't then
     //we have for sure reached the end of the redirected and then we test for the
@@ -69,13 +69,13 @@ int main(){
         int currentIntervalStartTime = lights[0]*2;
         int resultTime = -1;
         std::vector <bool> greens(lights.size()-1, false);
+        //while loop moves between green light intervals
         while (timeFound == false && currentIntervalStartTime <= 18000){
-            //while loop moves between green light intervals, this for
-            //loop covers every second of green in that interval,
-            //not counting seconds of the light being yellow
+            /*this for loop covers every second of green in that smallest interval,
+            not counting seconds of the light being yellow */
             int secondsOffset = 0;
-            for (int i = 0; i < lights[0] - 5 && timeFound == false; i++){
-                //loop to check if green on all other intervals
+            for (int i = 0; i < (lights[0] - 5) && timeFound == false; i++){
+                //loop to set boolean of green on all other intervals
                 for (int j = 1; j < lights.size(); j++){
                     int floor = (currentIntervalStartTime + i) / lights[j];
                     int remainder = (currentIntervalStartTime + i) % lights[j];
@@ -100,13 +100,12 @@ int main(){
             }
         }
 
-        //at this point the main while loop has broke either because a value
-        //was found or 5 hours had been tested for
+        /*at this point the main while loop has broke either because a value
+        was found or 5 hours had been tested for */
         if (timeFound){
             //convert raw seconds to hours, minutes and seconds
             int hours = resultTime / 3600;
-            resultTime -= 3600 * hours;
-            int minutes = resultTime / 60;
+            int minutes = (resultTime - (3600 * hours)) / 60;
             int seconds = resultTime % 60;
 
             std::cout << std::setfill('0') << std::setw(2) << hours << ':';
