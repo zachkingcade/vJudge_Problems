@@ -68,7 +68,6 @@ int main(){
         bool timeFound = false;
         int currentIntervalStartTime = lights[0]*2;
         int resultTime = -1;
-        std::vector <bool> greens(lights.size()-1, false);
         //while loop moves between green light intervals
         while (timeFound == false && currentIntervalStartTime <= 18000){
             /*this for loop covers every second of green in that smallest interval,
@@ -76,22 +75,16 @@ int main(){
             int secondsOffset = 0;
             for (int i = 0; i < (lights[0] - 5) && timeFound == false; i++){
                 //loop to set boolean of green on all other intervals
+                bool timeFound = true;
                 for (int j = 1; j < lights.size(); j++){
                     int floor = (currentIntervalStartTime + i) / lights[j];
                     int remainder = (currentIntervalStartTime + i) % lights[j];
-                    if (floor % 2 == 0 && remainder < lights[j] - 5){
-                        greens[j - 1] = true;
+                    if (floor % 2 != 0 || remainder > lights[j] - 5){
+                        timeFound = false;
                     }
                 }
-                //check if they were all green this second
-                if (std::count(greens.begin(), greens.end(), false) == 0){
-                    timeFound = true;
+                if(timeFound){
                     resultTime = currentIntervalStartTime + i;
-                } else {
-                    //reset the values for the vector test
-                    for (int i = 0; i < greens.size(); i++){
-                    greens[i] = false;
-                    }
                 }
             }
             if (!timeFound){
