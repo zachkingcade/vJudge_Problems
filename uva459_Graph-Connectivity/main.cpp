@@ -5,13 +5,12 @@
  * Notes:
  * I'll be using a vector to represent the graphs componets
  * where every componet is also a vector of the nodes it contains
- * There are 5 main cases that need to be accounted for here:
+ * There are 2 main cases that need to be accounted for here:
  * --------------------------------------------------------
- * 1- Node 1 not found,     Node 2 not found                 => start a new vector with both nodes on it
- * 2- Node 1 is  found,     Node 2 not found                 => add node 2 to the vector of node 1
- * 3- Node 1 not found,     Node 2 is  found                 => add node 1 to the vector of node 2
- * 4- Both Nodes found,     Nodes are not in the same vector => combine vectors
- * 5- Both Nodes Found,     Nodes are in the same vector     => Do Nothing
+ * 1- Nodes are not in the same vector => combine vectors
+ * 2- Nodes are in the same vector     => Do Nothing
+ * 
+ * Note: that the first letter denotes that we have nodes A - that Letter
  */
 
 //-----PreCompiler Directives-----
@@ -45,7 +44,7 @@ int main(){
         //process first node (single node)
         //Note: determines what nodes there are, it is from A to the first Node
         std::getline(std::cin, holder);
-        //add all the nodes here we can declare the size of our vector and add out first nodes
+        //add all the nodes here we can declare our vector and add our nodes
         std::vector <std::vector <char>>graph(0);
         for (int i = 0; i <= holder[0] - 'A'; i++){
             char temp = 'A' + i;
@@ -60,19 +59,6 @@ int main(){
             node2 = holder[1];
             index1 = findNode(graph,node1);
             index2 = findNode(graph,node2);
-            // case 1: Node 1 not found,     Node 2 not found                 => start a new vector with both nodes on it
-            if (index1 <= -1 && index2 <= -1){
-                std::vector <char> tempVector{node1,node2};
-                graph.push_back(tempVector);
-            }
-            // case 2: Node 1 is  found,     Node 2 not found                 => add node 2 to the vector of node 1
-            if (index1 > -1 && index2 <= -1){
-                graph[index1].push_back(node2);
-            }
-            // case 3: Node 1 not found,     Node 2 is  found                 => add node 1 to the vector of node 2
-            if(index1 <= -1 && index2 > -1){
-                graph[index2].push_back(node1);
-            }
             // case 4: Both Nodes found,     Nodes are not in the same vector => combine vectors
             if(index1 > -1 && index2 > -1 && index1 != index2){
                 for(int i = 0; i < graph[index1].size(); i++){
