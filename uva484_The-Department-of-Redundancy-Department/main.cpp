@@ -4,7 +4,7 @@
  * 
  * Notes:
  * This one is real simple, we just need a list of key - value pairs and
- * to trrack how many times the keys appear in a given data set and then
+ * to track how many times the keys appear in a given data set and then
  * set the value for that key to that
  */
 
