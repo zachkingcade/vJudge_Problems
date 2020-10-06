@@ -80,7 +80,7 @@ int shortestPathTo(std::vector <std::vector <int>>gragh, int start, int end){
     std::vector <bool>visted(gragh.size());
     //create a vector to store the results of the shortest path
     std::vector <int>results(gragh.size());
-    //queue totrack nodes to vist
+    //queue to track nodes to vist
     std::vector <int>checkList;
     //add starting node to queue
     checkList.push_back(start);
