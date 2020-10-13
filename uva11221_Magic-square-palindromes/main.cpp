@@ -39,7 +39,7 @@ int main(){
         }
 
         //check to make sure it is a Palindrome
-        //check left to right and right to left
+        //check left to right (all other checks are equivalent!)
         if (failed == false){
             //right to left
             for (int i = 0; i < modSentence.length() / 2; i++){
@@ -50,7 +50,9 @@ int main(){
         }
         
         //final print
+        //print case number
         std::cout << "Case #" << i + 1 << ':' << std::endl; 
+        //if we failed print no magic otherwsie print the square
         if (failed == true){
             std::cout << "No magic :(\n";
         } else {
